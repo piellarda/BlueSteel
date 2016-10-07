@@ -9,7 +9,11 @@
 import Foundation
 
 open class AvroEncoder {
-
+    convenience init(capacity: Int) {
+        self.init()
+        bytes.reserveCapacity(capacity)
+    }
+    
     var bytes: [UInt8] = []
 
     func encodeNull() {

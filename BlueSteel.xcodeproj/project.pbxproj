@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		099EDA9C1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
+		099EDA9D1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
+		099EDA9E1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
+		099EDA9F1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
+		09F4E7E11DA5469A0077DF51 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */; };
 		3B00E5681BA3782D0011486D /* BlueSteel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E55D1BA3782D0011486D /* BlueSteel.framework */; };
 		3B00E5861BA379830011486D /* BlueSteel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E57C1BA379830011486D /* BlueSteel.framework */; };
 		3B00E5A41BA37A420011486D /* BlueSteel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E59A1BA37A420011486D /* BlueSteel.framework */; };
@@ -62,11 +67,7 @@
 		3B1BA8BC1C51DF0B007BBA8B /* VarintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1BA8B21C51DF0B007BBA8B /* VarintTests.swift */; };
 		3B1BA8BD1C51DF0B007BBA8B /* VarintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1BA8B21C51DF0B007BBA8B /* VarintTests.swift */; };
 		3B1BA8BE1C51DF0B007BBA8B /* VarintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1BA8B21C51DF0B007BBA8B /* VarintTests.swift */; };
-		3B42070D1CA2E7CD0044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4206FD1CA2E7A30044E311 /* SwiftyJSON.framework */; };
-		3B42070E1CA2E7CF0044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4206FD1CA2E7A30044E311 /* SwiftyJSON.framework */; };
-		3B42070F1CA2E7D20044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4207001CA2E7A30044E311 /* SwiftyJSON.framework */; };
 		3B4207101CA2E7D30044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4207001CA2E7A30044E311 /* SwiftyJSON.framework */; };
-		3B4207111CA2E7D70044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4207051CA2E7A30044E311 /* SwiftyJSON.framework */; };
 		3B4207121CA2E7D80044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4207051CA2E7A30044E311 /* SwiftyJSON.framework */; };
 		3B4207131CA2E7E40044E311 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B42070A1CA2E7A30044E311 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileContainer.swift; sourceTree = "<group>"; };
+		09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/MyotestRunningDemonstrator-fkiejmmpgdhmobbhaphruuiacuhv/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		3B00E4D01BA36B840011486D /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
 		3B00E4D11BA36B840011486D /* Info-Tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Tests.plist"; sourceTree = "<group>"; };
 		3B00E55D1BA3782D0011486D /* BlueSteel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BlueSteel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +141,6 @@
 		3B38DBE11BA76428000986DF /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		3B38DBE21BA76428000986DF /* tvOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = tvOS.xcconfig; sourceTree = "<group>"; };
 		3B38DBE31BA76428000986DF /* watchOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = watchOS.xcconfig; sourceTree = "<group>"; };
-		3B4206FD1CA2E7A30044E311 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		3B4207001CA2E7A30044E311 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		3B4207051CA2E7A30044E311 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		3B42070A1CA2E7A30044E311 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -150,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B42070D1CA2E7CD0044E311 /* SwiftyJSON.framework in Frameworks */,
+				09F4E7E11DA5469A0077DF51 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +160,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B42070E1CA2E7CF0044E311 /* SwiftyJSON.framework in Frameworks */,
 				3B00E5681BA3782D0011486D /* BlueSteel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,7 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B42070F1CA2E7D20044E311 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +184,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4207111CA2E7D70044E311 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +207,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09F4E7DE1DA546850077DF51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3B00E4B91BA36B840011486D /* BuildControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +274,7 @@
 				3B1BA87E1C51DEF9007BBA8B /* AvroEncoder.swift */,
 				3B1BA87F1C51DEF9007BBA8B /* AvroValue.swift */,
 				3B1BA8801C51DEF9007BBA8B /* AvroValueEncoding.swift */,
+				099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */,
 				3B1BA8811C51DEF9007BBA8B /* BlueSteel.h */,
 				3B1BA8821C51DEF9007BBA8B /* Boxes.swift */,
 				3B1BA8831C51DEF9007BBA8B /* CCWrapper.c */,
@@ -301,7 +309,6 @@
 		3B4206F81CA2E7A30044E311 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3B4206FD1CA2E7A30044E311 /* SwiftyJSON.framework */,
 			);
 			name = iOS;
 			path = Carthage/Build/iOS;
@@ -342,6 +349,7 @@
 				3B1BA8BF1C51DF12007BBA8B /* Libraries */,
 				3B00E4B91BA36B840011486D /* BuildControl */,
 				3B00E55E1BA3782D0011486D /* Products */,
+				09F4E7DE1DA546850077DF51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -632,6 +640,7 @@
 				3B1BA89E1C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA88E1C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8861C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
+				099EDA9C1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
 				3B1BA8AA1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8921C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A21C51DEF9007BBA8B /* CCWrapper.c in Sources */,
@@ -659,6 +668,7 @@
 				3B1BA89F1C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA88F1C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8871C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
+				099EDA9D1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
 				3B1BA8AB1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8931C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A31C51DEF9007BBA8B /* CCWrapper.c in Sources */,
@@ -686,6 +696,7 @@
 				3B1BA8A01C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA8901C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8881C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
+				099EDA9E1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
 				3B1BA8AC1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8941C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A41C51DEF9007BBA8B /* CCWrapper.c in Sources */,
@@ -713,6 +724,7 @@
 				3B1BA8A11C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA8911C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8891C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
+				099EDA9F1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
 				3B1BA8AD1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8951C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A51C51DEF9007BBA8B /* CCWrapper.c in Sources */,
