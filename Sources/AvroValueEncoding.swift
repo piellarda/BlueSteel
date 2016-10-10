@@ -182,10 +182,12 @@ public extension AvroValue {
                 return nil
             }
 
-        case .avroEnumSchema:
+        case .avroEnumSchema(_, let enumValues):
             switch self {
-            //TODO: Make sure enum matches schema
-            case .avroEnumValue(let index, _) :
+            case .avroEnumValue(let index, let value) :
+                if index >= enumValues.count || enumValues[index] != value {
+                    return nil
+                }
                 encoder.encodeInt(Int32(index))
             default :
                 return nil
