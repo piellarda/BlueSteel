@@ -152,10 +152,29 @@ class AvroValueTests: XCTestCase {
         } else {
             XCTAssert(false, "Failed. Nil value")
         }
-
     }
-    func testPerformanceStub() {
-        self.measure() {
-        }
+    
+    func testEnumValue() {
+        let jsonSchema = "{\"type\" : \"enum\", \"name\" : \"myEnumType\", \"symbols\" : [\"foo\",\"bar\"] }"
+
+        let avroBytes1: [UInt8] = [0x00]
+        let value1 = AvroValue(jsonSchema: jsonSchema, withBytes: avroBytes1)
+        XCTAssertEqual(value1.enumeration, "foo")
+        XCTAssertEqual(value1.enumerationRawValue, 0)
+
+        let avroBytes2: [UInt8] = [0x02]
+        let value2 = AvroValue(jsonSchema: jsonSchema, withBytes: avroBytes2)
+        XCTAssertEqual(value2.enumeration, "bar")
+        XCTAssertEqual(value2.enumerationRawValue, 1)
+
+        let avroBytes3: [UInt8] = [0x01]
+        let value3 = AvroValue(jsonSchema: jsonSchema, withBytes: avroBytes3)
+        XCTAssertNil(value3.enumeration)
+        XCTAssertNil(value3.enumerationRawValue)
+        
+        let avroBytes4: [UInt8] = [0x04]
+        let value4 = AvroValue(jsonSchema: jsonSchema, withBytes: avroBytes4)
+        XCTAssertNil(value4.enumeration)
+        XCTAssertNil(value4.enumerationRawValue)
     }
 }

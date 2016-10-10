@@ -162,6 +162,17 @@ public enum AvroValue {
         }
     }
 
+    public var enumerationRawValue: Int? {
+        switch self {
+        case .avroEnumValue(let index, _ ):
+            return index
+        case .avroUnionValue(_, let box) :
+            return box.value.enumerationRawValue
+        default :
+            return nil
+        }
+    }
+
     public var fixed: [UInt8]? {
         switch self {
         case .avroFixedValue(let bytes) :
@@ -383,7 +394,7 @@ public enum AvroValue {
 
         case .avroEnumSchema(_, let enumValues) :
             if let index = decoder.decodeInt() {
-                if Int(index) > enumValues.count - 1 {
+                if (0..<enumValues.count).contains(Int(index)) {
                     self = .avroEnumValue(Int(index), enumValues[Int(index)])
                     return
                 }
