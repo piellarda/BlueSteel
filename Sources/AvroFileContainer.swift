@@ -10,6 +10,7 @@ open class AvroFileContainer {
     enum AvroFileContainerError : Error {
         case unsuportedURLType
         case errorCreatingFile
+        case errorCreatingDirectory
         case errorCreatingJSONSchema
         case errorEncodingHeader
         case errorEncodingObject
@@ -52,19 +53,17 @@ open class AvroFileContainer {
         guard URL.isFileURL else {
             throw AvroFileContainerError.unsuportedURLType
         }
-
-        /*if !FileManager.default.fileExists(atPath: URL.path) {
-            do {
-                try FileManager.default.createDirectory(atPath: (path as NSString).deletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
-            }
-            catch let error as NSError {
-                print(error.localizedDescription);
-            }
-        } */
-        
         let fileManager = FileManager.default
         let path = URL.path
+
+        do {
+            try fileManager.createDirectory(atPath: (path as NSString).deletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch  {
+            throw AvroFileContainerError.errorCreatingDirectory
+        }
         
+    
         if !fileManager.createFile(atPath: path, contents: nil, attributes: nil) {
             throw AvroFileContainerError.errorCreatingFile
         }
