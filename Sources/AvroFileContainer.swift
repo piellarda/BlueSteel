@@ -148,10 +148,11 @@ open class AvroFileContainer {
     }
     
     open func close() throws {
+        try closeBlock()
+
         guard fileHandle != nil else {
             return
         }
-        try closeBlock()
         fileHandle?.closeFile()
     }
     
