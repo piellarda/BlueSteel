@@ -9,6 +9,8 @@
 import Foundation
 
 open class AvroEncoder {
+    var checkPointByteCount = 0
+    
     convenience init(capacity: Int) {
         self.init()
         bytes.reserveCapacity(capacity)
@@ -20,6 +22,14 @@ open class AvroEncoder {
         return
     }
 
+    func setCheckPoint() {
+        checkPointByteCount = bytes.count
+    }
+    
+    func revertToCheckPoint() {
+        bytes.removeSubrange(checkPointByteCount..<bytes.count)
+    }
+    
     func encodeBoolean(_ value: Bool) {
         if value {
             bytes.append(UInt8(0x1))

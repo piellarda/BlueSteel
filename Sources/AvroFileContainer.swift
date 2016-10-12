@@ -33,6 +33,7 @@ open class AvroFileContainer {
     var estimatedEncodedObjectLength = 0
     var blockSize = 100000
     var blockObjectCount = 0
+    public var objectCount = 0
     
     static func randomSync() -> [UInt8] {
         var sync : [UInt8] = []
@@ -96,33 +97,44 @@ open class AvroFileContainer {
             throw error!
         }
         
-        if fileHandle == nil {
-            try openFileAndWriteHeader()
-        }
-        
         if encoder == nil {
             encoder = AvroEncoder(capacity: blockSize)
         }
         
-        let previousByteCount = encoder!.bytes.count
+        encoder!.setCheckPoint()
+        let previousByteCount = encoder!.checkPointByteCount
+        
         guard let bytes = value.encode(encoder!, schema: schema) else {
+            encoder?.revertToCheckPoint()
             throw AvroFileContainerError.errorEncodingObject
         }
         
         blockObjectCount += 1
+        objectCount += 1
         
         let objectEncodedLength = bytes.count - previousByteCount
         estimatedEncodedObjectLength = objectEncodedLength > estimatedEncodedObjectLength ? objectEncodedLength : estimatedEncodedObjectLength
         
         if bytes.count + estimatedEncodedObjectLength > blockSize {
-            closeBlock()
+            try closeBlock()
         }
     }
     
-    func closeBlock() {
+    func closeBlock() throws {
         guard encoder != nil else {
             return
         }
+
+        guard blockObjectCount > 0  else {
+            encoder = nil
+            return
+        }
+        
+        if fileHandle == nil {
+            try openFileAndWriteHeader()
+        }
+        
+
         let bytes = encoder!.bytes
         let blockEncoder = AvroEncoder(capacity: encoder!.bytes.count + 10 * 2 + 16)
         
@@ -135,15 +147,25 @@ open class AvroFileContainer {
         blockObjectCount = 0
     }
     
-    open func close() {
+    open func close() throws {
         guard fileHandle != nil else {
             return
         }
-        closeBlock()
+        try closeBlock()
         fileHandle?.closeFile()
     }
     
+    @discardableResult open func  tryToClose() -> Bool {
+        do {
+            try close()
+        } catch {
+            print("error while writing avro file")
+            return false
+        }
+        return true
+    }
+    
     deinit {
-        close()
+        tryToClose()
     }
 }
