@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		097163FB1DFB050E00B2188A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */; };
 		099EDA9C1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
 		099EDA9D1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
 		099EDA9E1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
@@ -67,10 +68,6 @@
 		3B1BA8BC1C51DF0B007BBA8B /* VarintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1BA8B21C51DF0B007BBA8B /* VarintTests.swift */; };
 		3B1BA8BD1C51DF0B007BBA8B /* VarintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1BA8B21C51DF0B007BBA8B /* VarintTests.swift */; };
 		3B1BA8BE1C51DF0B007BBA8B /* VarintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1BA8B21C51DF0B007BBA8B /* VarintTests.swift */; };
-		3B5F4DDC1D814F07004C7B2C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4DDB1D814F07004C7B2C /* SwiftyJSON.framework */; };
-		3B5F4DDE1D814F0D004C7B2C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4DDD1D814F0D004C7B2C /* SwiftyJSON.framework */; };
-		3B5F4DE01D814F14004C7B2C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4DDF1D814F14004C7B2C /* SwiftyJSON.framework */; };
-		3B5F4DE21D814F1A004C7B2C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4DE11D814F1A004C7B2C /* SwiftyJSON.framework */; };
 		4B0BE55F1D9D3F3600A33E0B /* AvroValueEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BE55D1D9D3F2600A33E0B /* AvroValueEncodingTests.swift */; };
 		4B0BE5601D9D3F3600A33E0B /* AvroValueEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BE55D1D9D3F2600A33E0B /* AvroValueEncodingTests.swift */; };
 		4B0BE5611D9D3F3600A33E0B /* AvroValueEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BE55D1D9D3F2600A33E0B /* AvroValueEncodingTests.swift */; };
@@ -180,7 +177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4207101CA2E7D30044E311 /* SwiftyJSON.framework in Frameworks */,
 				3B00E5861BA379830011486D /* BlueSteel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +192,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4207121CA2E7D80044E311 /* SwiftyJSON.framework in Frameworks */,
 				3B00E5A41BA37A420011486D /* BlueSteel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4207131CA2E7E40044E311 /* SwiftyJSON.framework in Frameworks */,
+				097163FB1DFB050E00B2188A /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
