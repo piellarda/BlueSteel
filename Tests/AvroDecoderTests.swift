@@ -24,8 +24,8 @@ class AvroDecoderTests: XCTestCase {
     func testDecodeInt() {
         let x = Decoder?.decodeInt()
         let y = Decoder?.decodeInt()
-        XCTAssertEqual(Int(x!), 2, "Decode broken.")
-        XCTAssertEqual(Int(y!), 3209099, "Decoder broken.")
+        XCTAssertEqual(x, 2, "Decode broken.")
+        XCTAssertEqual(y, 3209099, "Decoder broken.")
     }
 
     func testDecodeLong() {

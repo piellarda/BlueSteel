@@ -8,10 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		097163FB1DFB050E00B2188A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */; };
-		099EDA9C1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
-		099EDA9D1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
-		099EDA9E1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
-		099EDA9F1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */; };
+		09760E831E0BD2E300B52FC2 /* AvroFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */; };
+		09760E851E0BD31800B52FC2 /* AvroError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E841E0BD31800B52FC2 /* AvroError.swift */; };
+		09760E871E0C0D2B00B52FC2 /* AvroError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E841E0BD31800B52FC2 /* AvroError.swift */; };
+		09760E881E0C0D2B00B52FC2 /* AvroError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E841E0BD31800B52FC2 /* AvroError.swift */; };
+		09760E891E0C0D2C00B52FC2 /* AvroError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E841E0BD31800B52FC2 /* AvroError.swift */; };
+		09760E8A1E0C0D3000B52FC2 /* AvroFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */; };
+		09760E8B1E0C0D3100B52FC2 /* AvroFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */; };
+		09760E8C1E0C0D3200B52FC2 /* AvroFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */; };
+		099EDA9C1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */; };
+		099EDA9D1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */; };
+		099EDA9E1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */; };
+		099EDA9F1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */; };
 		09F4E7E11DA5469A0077DF51 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */; };
 		3B00E5681BA3782D0011486D /* BlueSteel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E55D1BA3782D0011486D /* BlueSteel.framework */; };
 		3B00E5861BA379830011486D /* BlueSteel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B00E57C1BA379830011486D /* BlueSteel.framework */; };
@@ -98,7 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileContainer.swift; sourceTree = "<group>"; };
+		09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileReader.swift; sourceTree = "<group>"; };
+		09760E841E0BD31800B52FC2 /* AvroError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroError.swift; sourceTree = "<group>"; };
+		099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileWriter.swift; sourceTree = "<group>"; };
 		09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/MyotestRunningDemonstrator-fkiejmmpgdhmobbhaphruuiacuhv/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		3B00E4D01BA36B840011486D /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
 		3B00E4D11BA36B840011486D /* Info-Tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Tests.plist"; sourceTree = "<group>"; };
@@ -274,7 +284,9 @@
 				3B1BA87E1C51DEF9007BBA8B /* AvroEncoder.swift */,
 				3B1BA87F1C51DEF9007BBA8B /* AvroValue.swift */,
 				3B1BA8801C51DEF9007BBA8B /* AvroValueEncoding.swift */,
-				099EDA9B1DA792C10071A9C0 /* AvroFileContainer.swift */,
+				099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */,
+				09760E841E0BD31800B52FC2 /* AvroError.swift */,
+				09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */,
 				3B1BA8811C51DEF9007BBA8B /* BlueSteel.h */,
 				3B1BA8821C51DEF9007BBA8B /* Boxes.swift */,
 				3B1BA8831C51DEF9007BBA8B /* CCWrapper.c */,
@@ -640,11 +652,13 @@
 				3B1BA88A1C51DEF9007BBA8B /* AvroDecoder.swift in Sources */,
 				3B1BA89E1C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA88E1C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
+				09760E851E0BD31800B52FC2 /* AvroError.swift in Sources */,
 				3B1BA8861C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
-				099EDA9C1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
+				099EDA9C1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */,
 				3B1BA8AA1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8921C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A21C51DEF9007BBA8B /* CCWrapper.c in Sources */,
+				09760E831E0BD2E300B52FC2 /* AvroFileReader.swift in Sources */,
 				3B1BA8961C51DEF9007BBA8B /* AvroValueEncoding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,10 +681,12 @@
 			files = (
 				3B1BA8A71C51DEF9007BBA8B /* Schema.swift in Sources */,
 				3B1BA88B1C51DEF9007BBA8B /* AvroDecoder.swift in Sources */,
+				09760E8A1E0C0D3000B52FC2 /* AvroFileReader.swift in Sources */,
+				09760E871E0C0D2B00B52FC2 /* AvroError.swift in Sources */,
 				3B1BA89F1C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA88F1C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8871C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
-				099EDA9D1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
+				099EDA9D1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */,
 				3B1BA8AB1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8931C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A31C51DEF9007BBA8B /* CCWrapper.c in Sources */,
@@ -696,10 +712,12 @@
 			files = (
 				3B1BA8A81C51DEF9007BBA8B /* Schema.swift in Sources */,
 				3B1BA88C1C51DEF9007BBA8B /* AvroDecoder.swift in Sources */,
+				09760E8B1E0C0D3100B52FC2 /* AvroFileReader.swift in Sources */,
+				09760E881E0C0D2B00B52FC2 /* AvroError.swift in Sources */,
 				3B1BA8A01C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA8901C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8881C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
-				099EDA9E1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
+				099EDA9E1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */,
 				3B1BA8AC1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8941C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A41C51DEF9007BBA8B /* CCWrapper.c in Sources */,
@@ -725,10 +743,12 @@
 			files = (
 				3B1BA8A91C51DEF9007BBA8B /* Schema.swift in Sources */,
 				3B1BA88D1C51DEF9007BBA8B /* AvroDecoder.swift in Sources */,
+				09760E8C1E0C0D3200B52FC2 /* AvroFileReader.swift in Sources */,
+				09760E891E0C0D2C00B52FC2 /* AvroError.swift in Sources */,
 				3B1BA8A11C51DEF9007BBA8B /* Boxes.swift in Sources */,
 				3B1BA8911C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				3B1BA8891C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
-				099EDA9F1DA792C10071A9C0 /* AvroFileContainer.swift in Sources */,
+				099EDA9F1DA792C10071A9C0 /* AvroFileWriter.swift in Sources */,
 				3B1BA8AD1C51DEF9007BBA8B /* Varint.swift in Sources */,
 				3B1BA8951C51DEF9007BBA8B /* AvroValue.swift in Sources */,
 				3B1BA8A51C51DEF9007BBA8B /* CCWrapper.c in Sources */,

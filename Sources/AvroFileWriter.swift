@@ -1,20 +1,12 @@
 //
-//  AvroFileContainer.swift
+//  AvroFileWriter.swift
 //  BlueSteel
 //
 //  Created by Jean-Alexis Montignies on 07.10.16.
 //
 //
 
-open class AvroFileContainer {
-    enum AvroFileContainerError : Error {
-        case unsuportedURLType
-        case errorCreatingFile
-        case errorCreatingDirectory
-        case errorCreatingJSONSchema
-        case errorEncodingHeader
-        case errorEncodingObject
-    }
+open class AvroFileWriter {
     
     static let magic: [UInt8] = [0x4f, 0x62, 0x6a, 0x01] // Obj\0x01
     static let avroFileContainerSchema = Schema(
@@ -24,11 +16,10 @@ open class AvroFileContainer {
             "{\"name\": \"meta\", \"type\": {\"type\": \"map\", \"values\": \"bytes\"}}, " +
         "{\"name\": \"sync\", \"type\": {\"type\": \"fixed\", \"name\": \"Sync\", \"size\": 16}}, ]}")
 
-    var URL: URL!
+    var url: URL!
     var fileHandle: FileHandle?
     var schema: Schema!
-    var error: Error?
-    let sync: [UInt8] = AvroFileContainer.randomSync()
+    let sync: [UInt8] = AvroFileWriter.randomSync()
     var encoder : AvroEncoder?
     var estimatedEncodedObjectLength = 0
     var blockSize = 100000
@@ -45,58 +36,54 @@ open class AvroFileContainer {
     }
     
     
-    public init(schema: Schema, URL: URL) {
+    public init(schema: Schema, url: URL) {
         self.schema = schema
-        self.URL = URL
+        self.url = url
     }
     
     func openFileAndWriteHeader() throws {
-        guard URL.isFileURL else {
-            throw AvroFileContainerError.unsuportedURLType
+        guard url.isFileURL else {
+            throw AvroError.unsuportedURLType
         }
         let fileManager = FileManager.default
-        let path = URL.path
+        let path = url.path
 
         do {
             try fileManager.createDirectory(atPath: (path as NSString).deletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
         }
         catch  {
-            throw AvroFileContainerError.errorCreatingDirectory
+            throw AvroError.errorCreatingDirectory
         }
         
     
         if !fileManager.createFile(atPath: path, contents: nil, attributes: nil) {
-            throw AvroFileContainerError.errorCreatingFile
+            throw AvroError.errorCreatingFile
         }
         
         guard let schemaJson = schema.json() else {
-            throw AvroFileContainerError.errorCreatingJSONSchema
+            throw AvroError.errorCreatingJSONSchema
         }
         
         let metaData = [
             "avro.schema" : AvroValue.avroStringValue(schemaJson)
         ]
         let headerFields = [
-            "magic" : AvroValue.avroFixedValue(AvroFileContainer.magic),
+            "magic" : AvroValue.avroFixedValue(AvroFileWriter.magic),
             "meta" : AvroValue.avroMapValue(metaData),
             "sync" : AvroValue.avroFixedValue(sync)
         ]
         
         let header = AvroValue.avroRecordValue(headerFields)
-        guard let encodedHeader = header.encode(AvroFileContainer.avroFileContainerSchema) else {
-            throw AvroFileContainerError.errorEncodingHeader
+        guard let encodedHeader = header.encode(AvroFileWriter.avroFileContainerSchema) else {
+            throw AvroError.errorEncodingHeader
         }
 
-        fileHandle = try FileHandle(forUpdating: URL)
+        fileHandle = try FileHandle(forUpdating: url)
         
         fileHandle?.write(Data(encodedHeader))
     }
     
     open func append(value: AvroValue) throws {
-        guard error == nil else {
-            throw error!
-        }
-        
         if encoder == nil {
             encoder = AvroEncoder(capacity: blockSize)
         }
@@ -106,7 +93,7 @@ open class AvroFileContainer {
         
         guard let bytes = value.encode(encoder!, schema: schema) else {
             encoder?.revertToCheckPoint()
-            throw AvroFileContainerError.errorEncodingObject
+            throw AvroError.errorEncodingObject
         }
         
         blockObjectCount += 1

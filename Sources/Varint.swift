@@ -86,6 +86,24 @@ public struct Varint {
         }
         return nil
     }
+    
+    public static func VarintFromHandle(_ fileHandle: FileHandle) -> Varint? {
+        var buf = [UInt8]()
+        
+        var data = fileHandle.readData(ofLength: 1)
+        while let x = data.first {
+            buf.append(x)
+            if (x & 0x80) == 0 {
+                break
+            }
+            data = fileHandle.readData(ofLength: 1)
+        }
+        if (buf.count > 0) {
+            return Varint(fromBytes: buf)
+        }
+        return nil
+    }
+
 }
 
 extension Varint {
