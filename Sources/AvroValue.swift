@@ -301,6 +301,13 @@ public enum AvroValue {
         self.init(schema, withDecoder: decoder)
     }
 
+    public init(schema: Schema, withInputStream inputStream: InputStream) {
+        let decoder = AvroDecoder(inputStream)
+        
+        self.init(schema, withDecoder: decoder)
+    }
+
+    
     init(_ schema: Schema, withDecoder decoder: AvroDecoder) {
 
         switch schema {

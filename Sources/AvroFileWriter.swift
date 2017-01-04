@@ -8,16 +8,9 @@
 
 open class AvroFileWriter {
     
-    static let magic: [UInt8] = [0x4f, 0x62, 0x6a, 0x01] // Obj\0x01
-    static let avroFileContainerSchema = Schema(
-        "{\"type\": \"record\", \"name\": \"org.apache.avro.file.Header\"," +
-            "\"fields\" : [" +
-            "{\"name\": \"magic\", \"type\": {\"type\": \"fixed\", \"name\": \"Magic\", \"size\": 4}}," +
-            "{\"name\": \"meta\", \"type\": {\"type\": \"map\", \"values\": \"bytes\"}}, " +
-        "{\"name\": \"sync\", \"type\": {\"type\": \"fixed\", \"name\": \"Sync\", \"size\": 16}}, ]}")
 
     var url: URL!
-    var fileHandle: FileHandle?
+    var outputStream: OutputStream?
     var schema: Schema!
     let sync: [UInt8] = AvroFileWriter.randomSync()
     var encoder : AvroEncoder?
@@ -65,22 +58,28 @@ open class AvroFileWriter {
         }
         
         let metaData = [
-            "avro.schema" : AvroValue.avroStringValue(schemaJson)
+            AvroFileContainer.metaDataSchemaKey : AvroValue.avroStringValue(schemaJson)
         ]
         let headerFields = [
-            "magic" : AvroValue.avroFixedValue(AvroFileWriter.magic),
-            "meta" : AvroValue.avroMapValue(metaData),
-            "sync" : AvroValue.avroFixedValue(sync)
+            AvroFileContainer.headerMagicKey : AvroValue.avroFixedValue(AvroFileContainer.magic),
+            AvroFileContainer.headerMetaDataKey : AvroValue.avroMapValue(metaData),
+            AvroFileContainer.headerSyncKey : AvroValue.avroFixedValue(sync)
         ]
         
         let header = AvroValue.avroRecordValue(headerFields)
-        guard let encodedHeader = header.encode(AvroFileWriter.avroFileContainerSchema) else {
+        guard let encodedHeader = header.encode(AvroFileContainer.avroFileContainerSchema) else {
             throw AvroError.errorEncodingHeader
         }
 
-        fileHandle = try FileHandle(forUpdating: url)
+        outputStream = OutputStream(url: url, append: false)
+        guard outputStream != nil else {
+            throw AvroError.errorCreatingFile
+        }
+        outputStream!.open()
         
-        fileHandle?.write(Data(encodedHeader))
+        guard outputStream!.write(encodedHeader, maxLength: encodedHeader.count) == encodedHeader.count else {
+            throw AvroError.errorWritting
+        }
     }
     
     open func append(value: AvroValue) throws {
@@ -117,7 +116,7 @@ open class AvroFileWriter {
             return
         }
         
-        if fileHandle == nil {
+        if outputStream == nil {
             try openFileAndWriteHeader()
         }
         
@@ -128,7 +127,9 @@ open class AvroFileWriter {
         blockEncoder.encodeLong(Int64(blockObjectCount))
         blockEncoder.encodeBytes(bytes)
         blockEncoder.encodeFixed(sync)
-        fileHandle!.write(Data(blockEncoder.bytes))
+        guard outputStream!.write(blockEncoder.bytes, maxLength: blockEncoder.bytes.count) == blockEncoder.bytes.count else {
+            throw AvroError.errorWritting
+        }
         
         encoder = nil
         blockObjectCount = 0
@@ -137,10 +138,10 @@ open class AvroFileWriter {
     open func close() throws {
         try closeBlock()
 
-        guard fileHandle != nil else {
+        guard outputStream != nil else {
             return
         }
-        fileHandle?.closeFile()
+        outputStream?.close()
     }
     
     @discardableResult open func  tryToClose() -> Bool {

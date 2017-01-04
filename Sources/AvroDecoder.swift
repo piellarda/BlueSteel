@@ -12,25 +12,28 @@ import Foundation
 
 open class AvroDecoder {
     var dataBytes: [UInt8]?
-    var fileHandle: FileHandle?
+    var inputStream: InputStream?
 
     public init(_ data:Data) {
         let dataPointer = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
         let bufferPointer = UnsafeBufferPointer<UInt8>(start: dataPointer, count: data.count)
         dataBytes = [UInt8](bufferPointer)
     }
+    
+    public init(_ inputStream:InputStream) {
+        self.inputStream = inputStream
+    }
+
 
     public init(_ data:[UInt8]) {
         dataBytes = data
     }
 
     private func getBytes(_ count: Int) -> [UInt8]? {
-        if let fileHandle = fileHandle {
-            let data = fileHandle.readData(ofLength: count)
-            if data.count == count {
-                let dataPointer = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count)
-                let bufferPointer = UnsafeBufferPointer<UInt8>(start: dataPointer, count: data.count)
-                return [UInt8](bufferPointer)
+        if let inputStream = inputStream {
+            var buffer = [UInt8](repeating: 0, count: count)
+            if  inputStream.read(&buffer, maxLength: count) == count {
+                return  buffer
             }
         } else if dataBytes != nil {
             if dataBytes!.count >= count {
@@ -97,8 +100,8 @@ open class AvroDecoder {
     }
 
     private func getVarInt() -> Varint? {
-        if let handle = fileHandle {
-            return Varint.VarintFromHandle(handle)
+        if let inputStream = inputStream {
+            return Varint.VarintFromInputStream(inputStream)
         } else if let bytes = dataBytes {
             if let varint = Varint.VarintFromBytes(bytes) {
                 dataBytes!.removeSubrange(0...varint.count - 1)

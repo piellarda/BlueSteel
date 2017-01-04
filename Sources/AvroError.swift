@@ -11,8 +11,14 @@ import Foundation
 enum AvroError : Error {
     case unsuportedURLType
     case errorCreatingFile
+    case errorOpeningFileForReading
+    case errorOpeningFileForWritting
     case errorCreatingDirectory
     case errorCreatingJSONSchema
+    case errorWritting
     case errorEncodingHeader
     case errorEncodingObject
+    case errorNotAnAvroFile
+    case errorReadingFileSchema
+    case errorReadingFileSync
 }

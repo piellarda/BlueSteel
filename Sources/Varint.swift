@@ -87,20 +87,41 @@ public struct Varint {
         return nil
     }
     
-    public static func VarintFromHandle(_ fileHandle: FileHandle) -> Varint? {
-        var buf = [UInt8]()
+    public static func VarintFromInputStream(_ inputStream: InputStream) -> Varint? {
+        var capacity = 8
+        var buf = UnsafeMutablePointer<UInt8>.allocate(capacity: capacity)
+        var ptr = buf
+        var count = 0
         
-        var data = fileHandle.readData(ofLength: 1)
-        while let x = data.first {
-            buf.append(x)
-            if (x & 0x80) == 0 {
+        while inputStream.read(ptr, maxLength: 1) == 1 {
+            count += 1
+            if (ptr.pointee & 0x80) == 0 {
                 break
             }
-            data = fileHandle.readData(ofLength: 1)
+            if (count >= capacity) && inputStream.hasBytesAvailable { // handle buffer overflow
+                let source = buf
+                buf = UnsafeMutablePointer<UInt8>.allocate(capacity: capacity + 8)
+                buf.assign(from: source, count: capacity)
+                source.deinitialize()
+                source.deallocate(capacity: capacity)
+                ptr = buf.advanced(by: capacity)
+                capacity = capacity + 8
+            } else {
+                ptr += 1
+            }
         }
-        if (buf.count > 0) {
-            return Varint(fromBytes: buf)
+        
+        if count > 0 {
+            var bytes = [UInt8](repeating: 0, count: count)
+            for index in 0...count-1 {
+                bytes[index] = buf[index]
+            }
+            return Varint(fromBytes: bytes)
         }
+
+        buf.deinitialize()
+        buf.deallocate(capacity: capacity)
+        
         return nil
     }
 

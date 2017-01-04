@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092EB9951E1D3889007897A6 /* AvroFileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EB9941E1D3889007897A6 /* AvroFileContainer.swift */; };
 		097163FB1DFB050E00B2188A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F4E7DF1DA546860077DF51 /* SwiftyJSON.framework */; };
 		09760E831E0BD2E300B52FC2 /* AvroFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */; };
 		09760E851E0BD31800B52FC2 /* AvroError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09760E841E0BD31800B52FC2 /* AvroError.swift */; };
@@ -106,6 +107,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		092EB9941E1D3889007897A6 /* AvroFileContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileContainer.swift; sourceTree = "<group>"; };
 		09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileReader.swift; sourceTree = "<group>"; };
 		09760E841E0BD31800B52FC2 /* AvroError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroError.swift; sourceTree = "<group>"; };
 		099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvroFileWriter.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				3B1BA87E1C51DEF9007BBA8B /* AvroEncoder.swift */,
 				3B1BA87F1C51DEF9007BBA8B /* AvroValue.swift */,
 				3B1BA8801C51DEF9007BBA8B /* AvroValueEncoding.swift */,
+				092EB9941E1D3889007897A6 /* AvroFileContainer.swift */,
 				099EDA9B1DA792C10071A9C0 /* AvroFileWriter.swift */,
 				09760E841E0BD31800B52FC2 /* AvroError.swift */,
 				09760E821E0BD2E300B52FC2 /* AvroFileReader.swift */,
@@ -651,6 +654,7 @@
 				3B1BA8A61C51DEF9007BBA8B /* Schema.swift in Sources */,
 				3B1BA88A1C51DEF9007BBA8B /* AvroDecoder.swift in Sources */,
 				3B1BA89E1C51DEF9007BBA8B /* Boxes.swift in Sources */,
+				092EB9951E1D3889007897A6 /* AvroFileContainer.swift in Sources */,
 				3B1BA88E1C51DEF9007BBA8B /* AvroEncoder.swift in Sources */,
 				09760E851E0BD31800B52FC2 /* AvroError.swift in Sources */,
 				3B1BA8861C51DEF9007BBA8B /* AvroConvertible.swift in Sources */,
