@@ -20,5 +20,7 @@ enum AvroError : Error {
     case errorEncodingObject
     case errorNotAnAvroFile
     case errorReadingFileSchema
+    case errorReadingBlockHeader
+    case errorReadingObject
     case errorReadingFileSync
 }

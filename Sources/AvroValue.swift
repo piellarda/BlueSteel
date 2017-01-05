@@ -56,6 +56,9 @@ public enum AvroValue {
         switch self {
         case .avroStringValue(let value) :
             return value
+        case .avroBytesValue(let rawString) :
+            let result = String(bytes: rawString, encoding: String.Encoding.utf8)
+            return result
         case .avroUnionValue(_, let box) :
             return box.value.string
         default :

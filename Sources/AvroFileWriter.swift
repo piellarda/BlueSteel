@@ -9,9 +9,9 @@
 open class AvroFileWriter {
     
 
-    var url: URL!
+    var url: URL?
     var outputStream: OutputStream?
-    var schema: Schema!
+    var schema: Schema
     let sync: [UInt8] = AvroFileWriter.randomSync()
     var encoder : AvroEncoder?
     var estimatedEncodedObjectLength = 0
@@ -34,23 +34,24 @@ open class AvroFileWriter {
         self.url = url
     }
     
-    func openFileAndWriteHeader() throws {
-        guard url.isFileURL else {
-            throw AvroError.unsuportedURLType
-        }
-        let fileManager = FileManager.default
-        let path = url.path
-
-        do {
-            try fileManager.createDirectory(atPath: (path as NSString).deletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
-        }
-        catch  {
-            throw AvroError.errorCreatingDirectory
-        }
-        
+    public init(schema: Schema) {
+        self.schema = schema
+    }
     
-        if !fileManager.createFile(atPath: path, contents: nil, attributes: nil) {
-            throw AvroError.errorCreatingFile
+    func openFileAndWriteHeader() throws {
+        if let url = url, url.isFileURL {
+            let fileManager = FileManager.default
+            let path = url.path
+
+            do {
+                try fileManager.createDirectory(atPath: (path as NSString).deletingLastPathComponent, withIntermediateDirectories: true, attributes: nil)
+            }
+            catch  {
+                throw AvroError.errorCreatingDirectory
+            }
+            if !fileManager.createFile(atPath: path, contents: nil, attributes: nil) {
+                throw AvroError.errorCreatingFile
+            }
         }
         
         guard let schemaJson = schema.json() else {
@@ -71,7 +72,12 @@ open class AvroFileWriter {
             throw AvroError.errorEncodingHeader
         }
 
-        outputStream = OutputStream(url: url, append: false)
+        if let url = url {
+            outputStream = OutputStream(url: url, append: false)
+        } else {
+            outputStream = OutputStream(toMemory: ())
+        }
+        
         guard outputStream != nil else {
             throw AvroError.errorCreatingFile
         }
@@ -142,6 +148,17 @@ open class AvroFileWriter {
             return
         }
         outputStream?.close()
+    }
+    
+    open var outputData : Data? {
+        guard outputStream != nil else {
+            return nil
+        }
+        guard url == nil else {
+            return nil
+        }
+        
+        return outputStream!.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as? Data
     }
     
     @discardableResult open func  tryToClose() -> Bool {
