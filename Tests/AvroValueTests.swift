@@ -24,12 +24,12 @@ class AvroValueTests: XCTestCase {
         let jsonSchema = "{ \"type\" : \"string\" }"
         let schema = Schema(jsonSchema)
 
-        let value = AvroValue(schema: schema, withBytes: avroBytes).string
+        let value = AvroValue(schema: schema!, withBytes: avroBytes).string
         XCTAssertEqual(value, "foo", "Strings don't match.")
         
         let inputStream = InputStream(data: Data(bytes: avroBytes))
         inputStream.open()
-        let valueFromStream = AvroValue(schema: schema, withInputStream: inputStream).string
+        let valueFromStream = AvroValue(schema: schema!, withInputStream: inputStream).string
         XCTAssertEqual(valueFromStream, "foo", "Strings don't match.")
     }
 
@@ -38,7 +38,7 @@ class AvroValueTests: XCTestCase {
         let jsonSchema = "{ \"type\" : \"bytes\" }"
         let schema = Schema(jsonSchema)
 
-        if let value = AvroValue(schema: schema, withBytes: avroBytes).bytes {
+        if let value = AvroValue(schema: schema!, withBytes: avroBytes).bytes {
             XCTAssertEqual(value, [0x66, 0x6f, 0x6f], "Byte arrays don't match.")
         } else {
             XCTFail("Nil value")
@@ -46,7 +46,7 @@ class AvroValueTests: XCTestCase {
         
         let inputStream = InputStream(data: Data(bytes: avroBytes))
         inputStream.open()
-        if let value = AvroValue(schema: schema, withInputStream: inputStream).bytes {
+        if let value = AvroValue(schema: schema!, withInputStream: inputStream).bytes {
             XCTAssertEqual(value, [0x66, 0x6f, 0x6f], "Byte arrays don't match.")
         } else {
             XCTFail("Nil value")

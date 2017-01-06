@@ -1,6 +1,6 @@
 language: objective-c
-xcode_workspace: BlueSteel.xcworkspace
-osx_image: xcode8
+xcode_project: BlueSteel.xcodeproj
+osx_image: xcode8.2
 
 git:
   depth: 1
@@ -10,31 +10,26 @@ before_install:
   - git submodule update --init
 
 install:
-  - gem install xcpretty
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script:
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-iOS -destination 'platform=iOS Simulator,OS=10.0,name=iPhone 6s Plus' -destination-timeout 300 clean build | tee "BlueSteel-iOS-build.log" | xcpretty
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-iOS -destination 'platform=iOS Simulator,OS=10.0,name=iPhone 6s Plus' -destination-timeout 300 test | tee "BlueSteel-iOS-test.log" | xcpretty
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-OSX -destination 'platform=macOS' -destination-timeout 300 clean build | tee "BlueSteel-macOS-build.log" | xcpretty
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-OSX -destination 'platform=macOS' -destination-timeout 300 test | tee "BlueSteel-macOS-test.log" | xcpretty
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-tvOS -destination 'platform=tvOS Simulator,OS=10.0,name=Apple TV 1080p' -destination-timeout 300 clean build | tee "BlueSteel-tvOS-build.log" | xcpretty
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-tvOS -destination 'platform=tvOS Simulator,OS=10.0,name=Apple TV 1080p' -destination-timeout 300 test | tee "BlueSteel-tvOS-test.log" | xcpretty
-- set -o pipefail && xcodebuild -workspace BlueSteel.xcworkspace -configuration Release ONLY_ACTIVE_ARCH=YES -scheme BlueSteel-watchOS -destination 'platform=watchOS Simulator,OS=3.0,name=Apple Watch - 42mm' -destination-timeout 300 clean build | tee "BlueSteel-watchOS-build.log" | xcpretty
+  - ./BuildControl/bin/travisBuildHelper.sh build iOS
+  - ./BuildControl/bin/travisBuildHelper.sh test iOS
+  - ./BuildControl/bin/travisBuildHelper.sh build macOS
+  - ./BuildControl/bin/travisBuildHelper.sh test macOS
+  - ./BuildControl/bin/travisBuildHelper.sh build tvOS
+  - ./BuildControl/bin/travisBuildHelper.sh test tvOS
+  - ./BuildControl/bin/travisBuildHelper.sh build watchOS
 
 after_failure:
-- echo "Travis test result is $TRAVIS_TEST_RESULT"
-- printf "\niOS build log:\n"
-- cat "BlueSteel-iOS-build.log"
-- printf "\niOS test log:\n"
-- cat "BlueSteel-iOS-test.log"
-- printf "\nmacOS build log:\n"
-- cat "BlueSteel-macOS-build.log"
-- printf "\nmacOS test log:\n"
-- cat "BlueSteel-macOS-test.log"
-- printf "\ntvOS build log:\n"
-- cat "BlueSteel-tvOS-build.log"
-- printf "\ntvOS test log:\n"
-- cat "BlueSteel-tvOS-test.log"
-- printf "\nwatchOS build log:\n"
-- cat "BlueSteel-watchOS-build.log"
+  - test -f "BlueSteel-iOS-build.log" && tail -n 2500 "BlueSteel-iOS-build.log"
+  - test -f "BlueSteel-iOS-test.log" && tail -n 2500 "BlueSteel-iOS-test.log"
+  - test -f "BlueSteel-iOS-test.log" && LINE_BEFORE=`cat "BlueSteel-iOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "BlueSteel-iOS-test.log" | tail -n 1` && cat "$LOG_FILE"
+  - test -f "BlueSteel-macOS-build.log" && tail -n 2500 "BlueSteel-macOS-build.log"
+  - test -f "BlueSteel-macOS-test.log" && tail -n 2500 "BlueSteel-macOS-test.log"
+  - test -f "BlueSteel-macOS-test.log" && LINE_BEFORE=`cat "BlueSteel-macOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "BlueSteel-macOS-test.log" | tail -n 1` && cat "$LOG_FILE"
+  - test -f "BlueSteel-tvOS-build.log" && tail -n 2500 "BlueSteel-tvOS-build.log"
+  - test -f "BlueSteel-tvOS-test.log" && tail -n 2500 "BlueSteel-tvOS-test.log"
+  - test -f "BlueSteel-tvOS-test.log" && LINE_BEFORE=`cat "BlueSteel-tvOS-test.log" | grep -n "IDETestOperationsObserverDebug. Writing diagnostic log for test session to." | awk -F':' '{print $1}'` && LINE=`expr $LINE_BEFORE + 1` && LOG_FILE=`head -n $LINE "BlueSteel-tvOS-test.log" | tail -n 1` && cat "$LOG_FILE"
+  - test -f "BlueSteel-watchOS-build.log" && tail -n 2500 "BlueSteel-watchOS-build.log"
 
