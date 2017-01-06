@@ -62,6 +62,7 @@ class AvroFileContainerTests: XCTestCase {
             } catch {
                 XCTFail("Unexpected exception thrown while reading")
             }
+            XCTAssertEqual(readCount, count)
         }
         
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AvroFileReader {
+open class AvroFileReader {
     var schema: Schema!
     var readSchema: Schema?
     var url: URL?
@@ -86,7 +86,7 @@ class AvroFileReader {
         }
     }
     
-    func read() throws -> AvroValue? {
+    open func read() throws -> AvroValue? {
         if state == .idle {
             do {
                 try openFileAndParseHeaders()
