@@ -15,9 +15,10 @@ open class AvroFileWriter {
     let sync: [UInt8] = AvroFileWriter.randomSync()
     var encoder : AvroEncoder?
     var estimatedEncodedObjectLength = 0
-    var blockSize = 100000
+    public var blockSize = 100000
     var blockObjectCount = 0
-    public var objectCount = 0
+    public private(set) var byteCount = 0
+    public private(set) var objectCount = 0
     
     static func randomSync() -> [UInt8] {
         var sync : [UInt8] = []
@@ -136,7 +137,7 @@ open class AvroFileWriter {
         guard outputStream!.write(blockEncoder.bytes, maxLength: blockEncoder.bytes.count) == blockEncoder.bytes.count else {
             throw AvroError.errorWritting
         }
-        
+        byteCount += blockEncoder.bytes.count
         encoder = nil
         blockObjectCount = 0
     }
