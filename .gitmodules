@@ -1,3 +1,3 @@
-[submodule "Carthage/Checkouts/SwiftyJSON"]
-	url = https://github.com/gilt/SwiftyJSON.git
-	path = Carthage/Checkouts/SwiftyJSON
+[submodule "SwiftyJSON"]
+	path = SwiftyJSON
+	url = git@github.com:gilt/SwiftyJSON.git
