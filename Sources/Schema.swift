@@ -243,7 +243,6 @@ public enum Schema {
     }
 
     public init(_ json: String) {
-        print (json)
         let schemaData = json.data(using: String.Encoding.utf8, allowLossyConversion: false)
         self.init(schemaData)
     }
