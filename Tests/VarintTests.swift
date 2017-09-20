@@ -36,7 +36,7 @@ class VarintTests: XCTestCase {
 
     func testEncodeZigZag() {
         let val = Int64(Int32.max).encodeZigZag()
-        XCTAssertEqual(val, UInt64(UInt32.max) - 1, "\(val)")
+        XCTAssertEqual(val, UInt64(UInt32.max) - UInt64(1), "\(val)")
     }
 
     func testDecodeZigZag() {

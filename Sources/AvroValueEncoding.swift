@@ -14,12 +14,13 @@ public extension AvroValue {
     /**
     AvroValue binary encoding.
 
-    :param schemaData Avro JSON schema as NSData.
+    :param schemaData Avro JSON schema as a `Data` instance.
 
     :returns Avro binary encoding as byte array. Nil if encoding fails.
     */
     public func encode(_ schemaData: Data) -> [UInt8]? {
-        let schema = Schema(schemaData)
+        guard let schema = Schema(schemaData) else { return nil }
+
         return self.encode(schema)
     }
 
@@ -31,7 +32,8 @@ public extension AvroValue {
     :returns Avro binary encoding as byte array. Nil if encoding fails.
     */
     public func encode(_ jsonSchema: String) -> [UInt8]? {
-        let schema = Schema(jsonSchema)
+        guard let schema = Schema(jsonSchema) else { return nil }
+
         return self.encode(schema)
     }
 

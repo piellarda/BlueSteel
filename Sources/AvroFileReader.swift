@@ -47,8 +47,11 @@ open class AvroFileReader {
                 throw AvroError.errorOpeningFileForReading
             }
             inputStream!.open()
-            
-            let header = AvroValue(schema: AvroFileContainer.avroFileContainerSchema, withInputStream: inputStream!)
+
+            guard let avroFileSchema = AvroFileContainer.avroFileContainerSchema else {
+                throw AvroError.errorReadingFileSchema
+            }
+            let header = AvroValue(schema: avroFileSchema, withInputStream: inputStream!)
             switch header {
             case let .avroRecordValue(headerValues):
                 guard let magicBytes = headerValues[AvroFileContainer.headerMagicKey], let bytes = magicBytes.fixed, bytes == AvroFileContainer.magic else {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "0900"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B00E57B1BA379830011486D"
+               BlueprintIdentifier = "3B9059021DAECB5200B4EEC0"
                BuildableName = "BlueSteel.framework"
-               BlueprintName = "BlueSteel-OSX"
+               BlueprintName = "BlueSteel"
                ReferencedContainer = "container:BlueSteel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B00E5841BA379830011486D"
+               BlueprintIdentifier = "3B90590B1DAECB5200B4EEC0"
                BuildableName = "BlueSteelUnitTests.xctest"
-               BlueprintName = "BlueSteelUnitTests-OSX"
+               BlueprintName = "BlueSteelTests"
                ReferencedContainer = "container:BlueSteel.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B00E57B1BA379830011486D"
+            BlueprintIdentifier = "3B9059021DAECB5200B4EEC0"
             BuildableName = "BlueSteel.framework"
-            BlueprintName = "BlueSteel-OSX"
+            BlueprintName = "BlueSteel"
             ReferencedContainer = "container:BlueSteel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,6 +56,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -64,9 +66,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B00E57B1BA379830011486D"
+            BlueprintIdentifier = "3B9059021DAECB5200B4EEC0"
             BuildableName = "BlueSteel.framework"
-            BlueprintName = "BlueSteel-OSX"
+            BlueprintName = "BlueSteel"
             ReferencedContainer = "container:BlueSteel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +84,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B00E57B1BA379830011486D"
+            BlueprintIdentifier = "3B9059021DAECB5200B4EEC0"
             BuildableName = "BlueSteel.framework"
-            BlueprintName = "BlueSteel-OSX"
+            BlueprintName = "BlueSteel"
             ReferencedContainer = "container:BlueSteel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

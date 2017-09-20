@@ -1,6 +1,6 @@
-#include "Framework.xcconfig"
+#include "Target.xcconfig"
 
 ONLY_ACTIVE_ARCH = YES
 SWIFT_OPTIMIZATION_LEVEL = -Onone
-OTHER_SWIFT_FLAGS = $(inherited) -DDEBUG
-BITCODE_GENERATION_MODE = marker
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEBUG
+ENABLE_BITCODE = NO

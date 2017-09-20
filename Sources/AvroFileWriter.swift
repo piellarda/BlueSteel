@@ -69,7 +69,10 @@ open class AvroFileWriter {
         ]
         
         let header = AvroValue.avroRecordValue(headerFields)
-        guard let encodedHeader = header.encode(AvroFileContainer.avroFileContainerSchema) else {
+        guard let avroFileSchema = AvroFileContainer.avroFileContainerSchema else {
+            throw AvroError.errorReadingFileSchema
+        }
+        guard let encodedHeader = header.encode(avroFileSchema) else {
             throw AvroError.errorEncodingHeader
         }
 
