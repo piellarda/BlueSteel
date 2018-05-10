@@ -102,8 +102,13 @@ public struct Varint {
                 let source = buf
                 buf = UnsafeMutablePointer<UInt8>.allocate(capacity: capacity + 8)
                 buf.assign(from: source, count: capacity)
+                #if swift(>=4.1)
+                source.deinitialize(count: 1)
+                source.deallocate()
+                #else
                 source.deinitialize()
                 source.deallocate(capacity: capacity)
+                #endif
                 ptr = buf.advanced(by: capacity)
                 capacity = capacity + 8
             } else {
@@ -119,8 +124,13 @@ public struct Varint {
             return Varint(fromBytes: bytes)
         }
 
+        #if swift(>=4.1)
+        buf.deinitialize(count: 1)
+        buf.deallocate()
+        #else
         buf.deinitialize()
         buf.deallocate(capacity: capacity)
+        #endif
         
         return nil
     }
