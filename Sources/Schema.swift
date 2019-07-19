@@ -136,7 +136,7 @@ public enum Schema {
             }
 
         case .avroEnumSchema(let name, let enumValues) :
-            if existingTypes.index(of: name) != nil {
+            if existingTypes.firstIndex(of: name) != nil {
                 return "\"" + name + "\""
             } else {
                 existingTypes.append(name)
@@ -155,7 +155,7 @@ public enum Schema {
             }
 
         case .avroRecordSchema(let name, let fields) :
-            if existingTypes.index(of: name) != nil {
+            if existingTypes.firstIndex(of: name) != nil {
                 return "\"" + name + "\""
             } else {
                 existingTypes.append(name)
@@ -185,7 +185,7 @@ public enum Schema {
             }
 
         case .avroFixedSchema(let name, let size) :
-            if existingTypes.index(of: name) != nil {
+            if existingTypes.firstIndex(of: name) != nil {
                 return "\"" + name + "\""
             } else {
                 existingTypes.append(name)
